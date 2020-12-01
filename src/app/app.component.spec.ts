@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NewGameComponent } from './new-game/new-game.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -9,27 +11,19 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        NewGameComponent,
       ],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('renders the "new-game" component', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
 
-  it(`should have as title 'hangman'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('hangman');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('hangman app is running!');
+    console.log(fixture.debugElement);
+
+    expect(fixture.debugElement.query(By.directive(NewGameComponent))).toBeTruthy();
   });
+
 });

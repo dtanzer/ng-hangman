@@ -11,7 +11,7 @@ describe('GameRulesService', () => {
   });
 
   const placeholders : [string, string][] = [ ['a', '_' ], [ 'the', '___' ], [ 'test', '____' ], ]
-  placeholders.forEach(([word, placeholder]) => it(`renders the placeholder "${placeholder}" when word is "${word}"`, () => {
+  placeholders.forEach(([word, placeholder]) => it(`creates the placeholder "${placeholder}" when word is "${word}" at the start of the game`, () => {
     service.startNewGame(word);
     expect(service.placeholder()).toEqual(placeholder.split(''));
   }));
