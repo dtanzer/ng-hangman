@@ -1,1 +1,10 @@
-<p>new-game works!</p>
+<!--
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+<input name="email" [(ngModel)]="email" type="text" required email #em="ngModel" />
+<input name="submit" type="submit" value="Login" [disabled]="!loginForm?.form.valid"/>
+-->
+
+<form #newGameForm="ngForm" (ngSubmit)="onSubmit()">
+  <input name="word" type="text" [(ngModel)]="word" word/>
+  <input name="submit" type="submit" value="New Game"/>
+</form>

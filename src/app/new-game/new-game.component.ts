@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { GameRulesService } from '../game-rules.service';
 
 @Component({
   selector: 'app-new-game',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-game.component.css']
 })
 export class NewGameComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild(NgForm) newGameForm?: NgForm;
+  word: string = '';
+  //email: string='';
+  //password: string='';
+  
+  constructor(private gameRulesService: GameRulesService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    this.gameRulesService.startNewGame(this.word);
   }
 
 }
