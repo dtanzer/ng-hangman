@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewGameComponent } from './new-game/new-game.component';
+import { RenderHintComponent } from './render-hint/render-hint.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewGameComponent
+    NewGameComponent,
+    RenderHintComponent
   ],
   imports: [
     BrowserModule,

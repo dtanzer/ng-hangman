@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NewGameComponent } from './new-game/new-game.component';
+import { RenderHintComponent } from './render-hint/render-hint.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,6 +14,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         NewGameComponent,
+        RenderHintComponent,
       ],
     }).compileComponents();
   });
@@ -21,9 +23,16 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
 
     fixture.detectChanges();
-    console.log(fixture.debugElement);
 
     expect(fixture.debugElement.query(By.directive(NewGameComponent))).toBeTruthy();
   });
+
+  it('renders the "hint" component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.directive(RenderHintComponent))).toBeTruthy();
+  })
 
 });
