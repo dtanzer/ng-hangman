@@ -45,4 +45,16 @@ describe('NewGameComponent', () => {
       done()
     });
   })
+
+  it('does not allow key down events to bubble', () => {
+    fixture.debugElement.nativeElement.keydown = (e: any) => { console.log('key down!!!', e)};
+
+    const keyDownEvent = new KeyboardEvent('keydown', { key: 'a' });
+    spyOn(keyDownEvent, 'stopPropagation');
+
+    fixture.debugElement.query(By.css('input[name="word"]')).nativeElement.dispatchEvent(keyDownEvent);
+    fixture.detectChanges()
+
+    expect(keyDownEvent.stopPropagation).toHaveBeenCalled();
+  })
 });

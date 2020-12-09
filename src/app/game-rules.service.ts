@@ -17,4 +17,8 @@ export class GameRulesService {
       .split('')
       .map(c => '_')
   }
+
+  guess(guessedLetter: string): void {
+    
+  }
 }

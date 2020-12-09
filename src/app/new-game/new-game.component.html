@@ -5,6 +5,6 @@
 -->
 
 <form #newGameForm="ngForm" (ngSubmit)="onSubmit()">
-  <input name="word" type="text" [(ngModel)]="word" word/>
+  <input name="word" type="text" [(ngModel)]="word" word (keydown)= "$event.stopPropagation()"/>
   <input name="submit" type="submit" value="New Game"/>
 </form>
