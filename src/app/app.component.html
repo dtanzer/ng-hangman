@@ -1,5 +1,5 @@
 <div class="keyboard-input" (keydown)="onKeyboardInput($event)" tabindex="1">
 	<div class="previous-guesses">Guessed: <span>{{previousGuesses}}</span></div>
-	<app-new-game></app-new-game>
+	<app-new-game (newGameCreated)="newGameCreated()"></app-new-game>
 	<app-render-hint></app-render-hint>
 </div>

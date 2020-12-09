@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GameRulesService } from '../game-rules.service';
 
@@ -9,9 +9,8 @@ import { GameRulesService } from '../game-rules.service';
 })
 export class NewGameComponent implements OnInit {
   @ViewChild(NgForm) newGameForm?: NgForm;
+  @Output() newGameCreated = new EventEmitter();
   word: string = '';
-  //email: string='';
-  //password: string='';
   
   constructor(private gameRulesService: GameRulesService) { }
 
@@ -20,6 +19,7 @@ export class NewGameComponent implements OnInit {
 
   onSubmit() {
     this.gameRulesService.startNewGame(this.word);
+    this.newGameCreated.emit();
   }
 
 }

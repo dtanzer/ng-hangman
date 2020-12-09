@@ -18,4 +18,8 @@ export class AppComponent {
       this.previousGuesses += e.key;
     }
   }
+
+  newGameCreated() {
+    this.previousGuesses = '';
+  }
 }

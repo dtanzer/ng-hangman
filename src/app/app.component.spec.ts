@@ -63,18 +63,31 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     })
 
-    expect(fixture.debugElement.query(By.css('.previous-guesses')).nativeElement.textContent).toContain(g)
+    expect(fixture.debugElement.query(By.css('.previous-guesses')).nativeElement.textContent).toContain(g);
   }));
 
   ['Alt', 'Z', '1', ].forEach(k => it(`does not pass special keys to the game rules service for key ${k}`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const gameRulesService = fixture.debugElement.injector.get(GameRulesService);
-    spyOn(gameRulesService, 'guess')
+    spyOn(gameRulesService, 'guess');
     fixture.detectChanges();
 
     const keyDownEvent = new KeyboardEvent('keydown', { key: k, });
     fixture.debugElement.query(By.css('.keyboard-input')).nativeElement.dispatchEvent(keyDownEvent);
 
-    expect(gameRulesService.guess).not.toHaveBeenCalled()
+    expect(gameRulesService.guess).not.toHaveBeenCalled();
   }))
+
+  it('clears the guessed letters when a new game is started', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const keyDownEvent = new KeyboardEvent('keydown', { key: 'z' });
+    fixture.debugElement.query(By.css('.keyboard-input')).nativeElement.dispatchEvent(keyDownEvent);
+    fixture.detectChanges();
+
+    const newGame = fixture.debugElement.query(By.directive(NewGameComponent));
+    newGame.componentInstance.newGameCreated.emit();
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.previous-guesses')).nativeElement.textContent).not.toContain('z');
+  })
 });

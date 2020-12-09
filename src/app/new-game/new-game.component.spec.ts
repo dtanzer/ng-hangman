@@ -57,4 +57,17 @@ describe('NewGameComponent', () => {
 
     expect(keyDownEvent.stopPropagation).toHaveBeenCalled();
   })
+
+  it('sends a new-game-created output event', (done) => {
+    spyOn(component.newGameCreated, 'emit');
+
+    fixture.whenStable().then(() => {
+      component.newGameForm?.controls.word.setValue('secret');
+      fixture.debugElement.query(By.css('input[type="submit"]')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(component.newGameCreated.emit).toHaveBeenCalled();
+      done();
+    })
+  })
 });
